@@ -54,8 +54,7 @@ process transform {
     --driver-memory ${params.driverMemory} \
     --executor-memory ${params.executorMemory} \
     -- \
-    vcf2adam \
-    -only_variants \
+    transformVariants \
     ${params.hdfsPath}/${sample}.vcf.gz \
     ${params.hdfsPath}/${sample}.variants.adam
   """

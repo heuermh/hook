@@ -24,8 +24,7 @@ adam-submit \
     --driver-memory $DRIVER_MEMORY \
     --executor-memory $EXECUTOR_MEMORY \
     -- \
-    vcf2adam \
-    -only_variants \
+    transformVariants \
     $HDFS_PATH/$SAMPLE.vcf.gz \
     $HDFS_PATH/$SAMPLE.variants.adam
 

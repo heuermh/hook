@@ -24,7 +24,7 @@ adam-submit \
     --driver-memory $DRIVER_MEMORY \
     --executor-memory $EXECUTOR_MEMORY \
     -- \
-    transform \
+    transformAlignments \
     $HDFS_PATH/$SAMPLE.bam \
     $HDFS_PATH/$SAMPLE.alignments.adam
 

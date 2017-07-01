@@ -54,7 +54,7 @@ process transform {
     --driver-memory ${params.driverMemory} \
     --executor-memory ${params.executorMemory} \
     -- \
-    transform \
+    transformAlignments \
     ${params.hdfsPath}/${sample}.bam \
     ${params.hdfsPath}/${sample}.alignments.adam
   """
