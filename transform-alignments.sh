@@ -1,13 +1,13 @@
 #!/bin/bash
 
 # transform-alignments.sh s3://source sample s3://dest
-SRC_DIR = $1
-SAMPLE = $2
-DEST_DIR = $3
-DRIVER_MEMORY = "58G"
-EXECUTOR_MEMORY = "58G"
-HDFS_DIR = "/data"
-HDFS_PATH = "hdfs://spark-master:8020$HDFS_DIR"
+SRC_DIR=$1
+SAMPLE=$2
+DEST_DIR=$3
+DRIVER_MEMORY="58G"
+EXECUTOR_MEMORY="58G"
+HDFS_DIR="/data"
+HDFS_PATH="hdfs://spark-master:8020$HDFS_DIR"
 
 echo "creating $HDFS_DIR directory on hdfs..."
 hadoop fs -mkdir -p "$HDFS_DIR"
