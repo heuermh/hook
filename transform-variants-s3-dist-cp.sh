@@ -28,8 +28,7 @@ adam-submit \
     $HDFS_PATH/$SAMPLE.vcf.gz \
     $HDFS_PATH/$SAMPLE.variants.adam
 
-echo "uploading $HDFS_PATH/$SAMPLE.variants.adam to $DEST_DIR with conductor..."
-spark-submit \
-    conductor-0.5-SNAPSHOT/conductor-0.5-SNAPSHOT-distribution.jar \
-    $HDFS_PATH/$SAMPLE.variants.adam \
-    $DEST_DIR/$SAMPLE.variants.adam
+echo "uploading $HDFS_PATH/$SAMPLE.variants.adam to $DEST_DIR with s3-dist-cp..."
+s3-dist-cp \
+    --src $HDFS_PATH/$SAMPLE.variants.adam \
+    --dest $DEST_DIR/$SAMPLE.variants.adam
