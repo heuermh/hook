@@ -4,16 +4,17 @@
 SRC_DIR=$1
 SAMPLE=$2
 DEST_DIR=$3
-DRIVER_MEMORY="58G"
-EXECUTOR_MEMORY="58G"
+DRIVER_MEMORY="46G"
+EXECUTOR_MEMORY="46G"
 HDFS_DIR="/data"
-HDFS_PATH="hdfs://spark-master:8020$HDFS_DIR"
+HDFS_PATH="hdfs://$HDFS_DIR"
 
 echo "creating $HDFS_DIR directory on hdfs..."
 hadoop fs -mkdir -p "$HDFS_DIR"
 
 echo "downloading $SRC_DIR/$SAMPLE.vcf.gz to $HDFS_PATH/$SAMPLE.vcf.gz with conductor..."
 spark-submit \
+    --master yarn \
     conductor-0.5-SNAPSHOT/conductor-0.5-SNAPSHOT-distribution.jar \
     $SRC_DIR/$SAMPLE.vcf.gz \
     $HDFS_PATH/$SAMPLE.vcf.gz \
@@ -21,6 +22,7 @@ spark-submit \
 
 echo "converting $HDFS_PATH/$SAMPLE.vcf.gz to $HDFS_PATH/$SAMPLE.genotypes.adam..."
 adam-submit \
+    --master yarn \
     --driver-memory $DRIVER_MEMORY \
     --executor-memory $EXECUTOR_MEMORY \
     -- \
