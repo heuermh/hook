@@ -9,12 +9,12 @@ HDFS_PATH="hdfs://spark-master:8020$HDFS_DIR"
 
 #
 # EMR cluster with:
-# 1x 16 CPUs 30G RAM master node (m3.2xlarge)
-# 8x 8 CPUs 61G RAM worker nodes (r3.2xlarge)
+# 1x 16 vCPUs 30G RAM master node (m3.2xlarge)
+# 8x 16 vCPUs 61G RAM worker nodes (r3.2xlarge)
 DRIVER_MEMORY="22G"
 DRIVER_CORES="14"
-EXECUTOR_MEMORY="52G"
-EXECUTOR_CORES="7"
+EXECUTOR_MEMORY="50G"
+EXECUTOR_CORES="14"
 
 echo "creating $HDFS_DIR directory on hdfs..."
 hadoop fs -mkdir -p "$HDFS_DIR"
@@ -34,7 +34,7 @@ adam-submit \
     --executor-memory $EXECUTOR_MEMORY \
     --conf spark.driver.cores=$DRIVER_CORES \
     --conf spark.executor.cores=$EXECUTOR_CORES \
-    --conf spark.yarn.executor.memoryOverhead=2048
+    --conf spark.yarn.executor.memoryOverhead=2048 \
     -- \
     transformAlignments \
     $HDFS_PATH/$SAMPLE.bam \
