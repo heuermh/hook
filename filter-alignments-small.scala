@@ -9,7 +9,7 @@ val before = System.nanoTime()
 
 val alignments = sc.loadParquetAlignments("sample.alignments.adam").filterByOverlappingRegions(Seq(hlaB))
 
-alignments.dataset.filter("filtersPassed = true").count()
+alignments.dataset.filter("mapq > 20").count()
 
 printMetrics(System.nanoTime() - before, ml)
 System.exit(0)

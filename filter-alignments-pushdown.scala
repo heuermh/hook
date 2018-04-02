@@ -8,11 +8,11 @@ import org.bdgenomics.adam.util.ADAMShell._
 val ml = createMetricsListener(sc)
 val mhc = ReferenceRegion.fromGenomicRange("6", 28477796L, 33448354L)
 val kir = ReferenceRegion.fromGenomicRange("19", 55228187L, 55383188L)
-val filtersPassed: FilterPredicate = (BooleanColumn("filtersPassed") === true)
+val mapq: FilterPredicate = (IntColumn("mapq") > 20)
 
 val before = System.nanoTime()
 
-val alignments = sc.loadParquetAlignments("sample.alignments.adam", optPredicate = Some(filtersPassed)).filterByOverlappingRegions(Seq(mhc, kir))
+val alignments = sc.loadParquetAlignments("sample.alignments.adam", optPredicate = Some(mapq)).filterByOverlappingRegions(Seq(mhc, kir))
 
 alignments.dataset.count()
 
