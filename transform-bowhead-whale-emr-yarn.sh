@@ -1,5 +1,4 @@
 #!/bin/bash
-
 #
 # EMR cluster with:
 # 16 vCPUs 30G RAM master and core nodes (m3.2xlarge)
