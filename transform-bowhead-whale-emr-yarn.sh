@@ -1,4 +1,7 @@
 #!/bin/bash
+
+set -x
+
 #
 # EMR cluster with:
 # 16 vCPUs 30G RAM master and core nodes (m3.2xlarge)
@@ -7,7 +10,7 @@ DRIVER_CORES="14"
 EXECUTOR_MEMORY="20G"
 EXECUTOR_CORES="14"
 
-ADAM="./bin/adam-submit --master yarn --deploy-mode cluster --driver-memory $DRIVER_MEMORY --executor-memory $EXECUTOR_MEMORY --conf spark.driver.cores=$DRIVER_CORES --conf spark.executor.cores=$EXECUTOR_CORES --conf spark.executor.memoryOverhead=2048 --conf spark.kryoserializer.buffer.max=2046 --"
+ADAM="adam-submit --master yarn --deploy-mode cluster --driver-memory $DRIVER_MEMORY --executor-memory $EXECUTOR_MEMORY --conf spark.driver.cores=$DRIVER_CORES --conf spark.executor.cores=$EXECUTOR_CORES --conf spark.executor.memoryOverhead=2048 --conf spark.kryoserializer.buffer.max=2046 --"
 
 echo ">>> transforming proteins and coding sequences"
 

@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -x
+
 #
 # EMR cluster with:
 # 16 vCPUs 30G RAM master and core nodes (m3.2xlarge)
@@ -15,10 +17,12 @@ echo ">>> transforming genome and primary assembly"
 time $ADAM transformSlices -maximum_length 10000 -create_reference GRCh38.p12.genome.fa.gz GRCh38.p12.genome.10k.slices.adam
 time $ADAM transformSlices -maximum_length 10000 -create_reference GRCh38.primary_assembly.genome.fa.gz GRCh38.primary_assembly.genome.10k.slices.adam
 
+
 echo ">>> transforming transcripts and proteins"
 
 time $ADAM transformSequences -alphabet DNA gencode.v31.transcripts.fa.gz gencode.v31.transcripts.sequences.adam
-time $ADAM transformSequences -alphabet PROTEIN pc_translations.fa.gz pc_translations.sequences.adam
+time $ADAM transformSequences -alphabet PROTEIN gencode.v31.pc_translations.fa.gz gencode.v31.pc_translations.sequences.adam
+
 
 echo ">>> transforming features"
 

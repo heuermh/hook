@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -x
+
 echo ">>> downloading"
 
 wget http://alfred.liv.ac.uk/downloads/bowhead_whale/bowhead_whale_coding_sequences.zip
@@ -7,6 +9,7 @@ wget http://alfred.liv.ac.uk/downloads/bowhead_whale/bowhead_whale_proteins.zip
 wget http://alfred.liv.ac.uk/downloads/bowhead_whale/bowhead_whale_scaffolds.zip
 wget http://alfred.liv.ac.uk/downloads/bowhead_whale/Bickham_Trinity.zip
 wget http://alfred.liv.ac.uk/downloads/bowhead_whale/Bo_bowhead_MusKid_TrinityFasta.zip
+
 
 echo ">>> converting from zip to gzip"
 
@@ -37,6 +40,7 @@ mv Trinity.fasta Bo_bowhead_MusKid_TrinityFasta.fasta
 gzip Bo_bowhead_MusKid_TrinityFasta.fasta
 rm Bo_bowhead_MusKid_TrinityFasta.zip
 rm readme.txt
+
 
 echo ">>> moving to HDFS"
 

@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -x
+
 # See https://www.gencodegenes.org/human/release_31.html
 
 echo ">>> downloading"
@@ -12,10 +14,12 @@ wget ftp://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_31/gencode.
 wget ftp://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_31/GRCh38.p12.genome.fa.gz
 wget ftp://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_31/GRCh38.primary_assembly.genome.fa.gz
 
+
 echo ">>> generating sequence dictionaries"
 
 dsh-bio create-sequence-dictionary -i GRCh38.p12.genome.fa.gz -o GRCh38.p12.genome.fa.dict
 dsh-bio create-sequence-dictionary -i GRCh38.primary_assembly.genome.fa.gz -o GRCh38.primary_assembly.genome.fa.dict
+
 
 echo ">>> moving to HDFS"
 
