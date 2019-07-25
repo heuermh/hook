@@ -2,11 +2,21 @@
 
 params.srcDir = "${baseDir}/example" // "s3://read-bucket/dir"
 params.destDir = "${baseDir}/example" // "s3://write-bucket/dir"
-params.driverMemory = "58G"
-params.executorMemory = "58G"
 params.hdfsDir = "/data"
 params.hdfsPath = "hdfs://spark-master:8020${params.hdfsDir}"
 params.conductorJar = "conductor-0.5-SNAPSHOT/conductor-0.5-SNAPSHOT-distribution.jar"
+
+//
+// EMR cluster with:
+// 1x 16 vCPUs 30G RAM master node (m3.2xlarge)
+// 8x 16 vCPUs 61G RAM worker nodes (r3.2xlarge)
+params.sparkMaster = "yarn"
+params.deployMode = "cluster"
+params.driverCores = "14"
+params.driverMemory = "22G"
+params.executorCores = "14"
+params.executorMemory = "50G"
+
 
 bamFiles = "${params.srcDir}/**.bam"
 bams = Channel.fromPath(bamFiles).map { path -> tuple(path.baseName, path) }
@@ -34,6 +44,8 @@ process download {
 
   """
   spark-submit \
+    --master ${params.sparkMaster} \
+    --deploy-mode ${params.deployMode} \
     ${params.conductorJar} \
     ${path} \
     ${params.hdfsPath}/${sample}.bam \
@@ -51,8 +63,13 @@ process transform {
 
   """
   adam-submit \
+    --master ${params.sparkMaster} \
+    --deploy-mode ${params.deployMode} \
     --driver-memory ${params.driverMemory} \
     --executor-memory ${params.executorMemory} \
+    --conf spark.driver.cores=${params.driverCores} \
+    --conf spark.executor.cores=${params.executorCores} \
+    --conf spark.yarn.executor.memoryOverhead=2048 \
     -- \
     transformAlignments \
     ${params.hdfsPath}/${sample}.bam \
@@ -69,10 +86,9 @@ process upload {
     set sample, path into uploaded
 
   """
-  spark-submit \
-    ${params.conductorJar} \
-    ${params.hdfsPath}/${sample}.alignments.adam \
-    ${params.destDir}/${sample}.alignments.adam
+  s3-dist-cp \
+    --src ${params.hdfsPath}/${sample}.alignments.adam \
+    --dest ${params.destDir}/${sample}.alignments.adam
   """
 }
 
