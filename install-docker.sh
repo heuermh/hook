@@ -6,4 +6,3 @@ sudo service docker start
 sudo usermod -a -G docker ec2-user
 
 echo "Log out and back in to pick up environment updates."
-
