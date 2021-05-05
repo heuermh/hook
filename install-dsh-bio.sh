@@ -1,6 +1,6 @@
 \#!/bin/bash
 
-VERSION=2.0.3
+VERSION=2.0.4
 
 echo "installing dsh-bio release version $VERSION..."
 wget https://repo1.maven.org/maven2/org/dishevelled/dsh-bio-tools/$VERSION/dsh-bio-tools-$VERSION-bin.tar.gz
