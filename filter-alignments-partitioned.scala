@@ -1,5 +1,5 @@
 import org.bdgenomics.adam.models._
-import org.bdgenomics.adam.rdd.ADAMContext._
+import org.bdgenomics.adam.ds.ADAMContext._
 import org.bdgenomics.adam.util.ADAMShell._
 
 val ml = createMetricsListener(sc)
