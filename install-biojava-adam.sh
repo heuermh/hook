@@ -1,8 +1,10 @@
 #!/bin/bash
 
-echo "installing biojava-adam release version 0.6.0..."
+VERSION=0.7.0
+
+echo "installing biojava-adam release version $VERSION..."
 
 mkdir biojava-adam
 cd biojava-adam
-wget https://repo1.maven.org/maven2/org/biojava/biojava-adam/0.6.0/biojava-adam-0.6.0.jar
+wget https://repo1.maven.org/maven2/org/biojava/biojava-adam/$VERSION/biojava-adam-$VERSION.jar
 cd ..
