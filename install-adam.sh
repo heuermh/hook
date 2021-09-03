@@ -8,4 +8,4 @@ tar xvfz adam-distribution-spark3_2.12-$VERSION-bin.tar.gz
 rm adam-distribution-spark3_2.12-$VERSION-bin.tar.gz
 
 echo "To add adam to your path:"
-echo "export PATH=`pwd`/adam-distribution-spark3_2.11-$VERSION/bin:\$PATH"
+echo "export PATH=`pwd`/adam-distribution-spark3_2.12-$VERSION/bin:\$PATH"
