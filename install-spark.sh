@@ -9,3 +9,6 @@ rm spark-$VERSION-bin-hadoop3.2.tgz
 
 echo "To add Spark to your path:"
 echo "export PATH=`pwd`/spark-$VERSION-bin-hadoop3.2/bin:\$PATH"
+echo " "
+echo "To set SPARK_HOME appropriately:"
+echo "export SPARK_HOME=`pwd`/spark-$VERSION-bin-hadoop3.2"
