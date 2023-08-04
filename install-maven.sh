@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION=3.9.2
+VERSION=3.9.4
 
 echo "installing local version of Apache Maven version $VERSION..."
 wget http://apache.osuosl.org/maven/maven-3/$VERSION/binaries/apache-maven-$VERSION-bin.tar.gz
