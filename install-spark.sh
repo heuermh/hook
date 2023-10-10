@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION=3.3.2
+VERSION=3.3.3
 
 echo "installing Spark release version $VERSION..."
 wget https://downloads.apache.org/spark/spark-$VERSION/spark-$VERSION-bin-hadoop3.tgz -O spark-$VERSION-bin-hadoop3.tgz
