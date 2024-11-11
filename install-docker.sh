@@ -1,8 +1,19 @@
 #!/bin/bash
 
-echo "Installing docker on AWS EC2 as a service (sudo required)..."
-sudo amazon-linux-extras install docker
-sudo service docker start
-sudo usermod -a -G docker ec2-user
+echo "installing docker (requires sudo)..."
+sudo dnf update
+sudo dnf install docker
 
-echo "Log out and back in to pick up environment updates."
+echo "enabling docker service..."
+sudo systemctl start docker
+sudo systemctl enable docker
+
+echo "creating docker group..."
+sudo usermod -aG docker $USER
+newgrp docker
+
+echo "docker service status:"
+sudo systemctl status docker
+
+echo "attempting to run docker hello-world..."
+docker run hello-world
