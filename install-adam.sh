@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION=1.0
+VERSION=1.0.1
 
 echo "installing ADAM release version $VERSION..."
 wget https://repo1.maven.org/maven2/org/bdgenomics/adam/adam-distribution-spark3_2.12/$VERSION/adam-distribution-spark3_2.12-$VERSION-bin.tar.gz

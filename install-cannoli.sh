@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION=1.0
+VERSION=1.0.1
 
 echo "installing Cannoli release version $VERSION..."
 wget https://repo1.maven.org/maven2/org/bdgenomics/cannoli/cannoli-distribution-spark3_2.12/$VERSION/cannoli-distribution-spark3_2.12-$VERSION-bin.tar.gz
